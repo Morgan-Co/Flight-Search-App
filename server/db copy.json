@@ -1,0 +1,58 @@
+{
+	"tickets": [
+		{
+			"id": 1,
+			"from": "Moscow",
+			"to": "Saint-Petersburg",
+			"company": {
+				"name": "Победа",
+				"logo": "/Pobeda.png"
+			},
+			"price": 12680,
+			"currency": "RUB",
+			"time": {
+				"startTime": "12:00",
+				"endTime": "16:30"
+			},
+			"duration": 1701919837793,
+			"date": "01.01.2023",
+			"connectionAmount": "3"
+		},
+		{
+			"id": 2,
+			"from": "Moscow",
+			"to": "Saint-Petersburg",
+			"company": {
+				"name": "Red Wings",
+				"logo": "/RedWings.png"
+			},
+			"price": 21500,
+			"currency": "RUB",
+			"time": {
+				"startTime": "12:00",
+				"endTime": "16:30"
+			},
+			"duration": 1701916224024,
+			"date": "01.01.2023",
+			"connectionAmount": "3"
+		},
+		{
+			"id": 3,
+			"from": "Moscow",
+			"to": "Saint-Petersburg",
+			"company": {
+				"name": "7 Airlines",
+				"logo": "/7Airlines.png"
+			},
+			"price": 23995,
+			"currency": "RUB",
+			"time": {
+				"startTime": "12:00",
+				"endTime": "16:30"
+			},
+			"duration": 1701912642328,
+			"date": "01.01.2023",
+			"connectionAmount": "3"
+		}
+	]
+}
