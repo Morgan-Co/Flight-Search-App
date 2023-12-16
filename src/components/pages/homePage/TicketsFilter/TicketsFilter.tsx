@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import { device } from '../../../../data/media.data'
 import { useAppDispatch } from '../../../../hooks/hooks'
 import { fetchByTicketsFilter } from '../../../../redux/tickets/tickets.actions'
 
@@ -55,7 +56,8 @@ const Wrapper = styled.div`
 `
 
 const Button = styled.button<{ $active?: boolean }>`
-	width: 242px;
+	max-width: 242px;
+	width: 100%;
 	background: ${props => (props.$active ? '#4e148c' : 'transparent')};
 	height: 55px;
 	cursor: pointer;
@@ -70,6 +72,11 @@ const Button = styled.button<{ $active?: boolean }>`
 	line-height: normal;
 	border: 1px solid #4e148c;
 	transition: all 0.2s ease;
+
+	@media ${device.mobileL} {
+		font-size: 12px;
+		height: 42px;
+	}
 
 	${props =>
 		!props.$active &&

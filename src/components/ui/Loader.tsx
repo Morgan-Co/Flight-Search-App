@@ -3,7 +3,6 @@ import Preloader from "/Preloader.gif"
 
 
 const Loader = () => {
-	
 	return (
 			<LoaderWrapper>
 				<LoaderImg src={Preloader} alt='' />

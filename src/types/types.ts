@@ -6,7 +6,7 @@ export interface TicketTime {
 
 // Ticket type
 export interface Ticket {
-	id: number
+	id?: number
 	from: string
 	to: string
 	company: {
@@ -18,12 +18,30 @@ export interface Ticket {
 	time: TicketTime
 	date: string
 	duration: number
-	connectionAmount: number | null
+	connectionAmount: number
 }
 
 // Ticket State type
 export type TicketsState = {
 	tickets: Ticket[]
+	limit: number
 	loading: boolean
 	error: string | null
+}
+
+export type Company = {
+	id: number
+	name: string
+	isActive: boolean
+}
+
+export type ConnectionAmount = {
+	id: number
+	name: string
+	isActive: boolean
+}
+
+export interface TicketsFilters {
+	connectionAmount: ConnectionAmount[]
+	companies: Company[]
 }

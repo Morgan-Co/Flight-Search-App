@@ -2,15 +2,16 @@ import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import HomePage from './components/pages/homePage/HomePage'
-import { useAppDispatch } from './hooks/hooks'
+import { useAppDispatch, useAppSelector } from './hooks'
 import { fetchTickets } from './redux/tickets/tickets.actions'
+import { TicketsState } from './types'
 
 const App = () => {
 	const dispatch = useAppDispatch()
-
+	const { limit }: TicketsState = useAppSelector(state => state.tickets)
 	useEffect(() => {
-		dispatch(fetchTickets(3))
-	}, [dispatch])
+		dispatch(fetchTickets(limit))
+	}, [limit, dispatch])
 
 	return (
 		<Routes>

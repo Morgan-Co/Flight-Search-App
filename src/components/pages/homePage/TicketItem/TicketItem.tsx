@@ -1,19 +1,24 @@
-import { CgDetailsMore } from 'react-icons/cg'
 import styled from 'styled-components'
-import { Ticket } from '../../../../../types/types'
+import { Ticket } from '../../../../types'
 
 const TicketItem = (props: Ticket) => {
-	const { price, company, time, duration, connectionAmount } = props
+	const { price, company, time, duration, connectionAmount, currency } = props
 	const hours = new Date(duration).getHours()
 	const minutes = new Date(duration).getMinutes()
+	const options = {
+		style: 'currency',
+		currency: currency,
+		minimumFractionDigits: 0,
+	}
+	const formattedPrice= new Intl.NumberFormat('ru-RU', options).format(price)
 
 	return (
 		<>
 			<TicketWrapper>
 				<Content>
 					<Top>
-						<Price>{price}</Price>
-						<Img src={company.logo} alt='' />
+						<Price>{formattedPrice}</Price>
+						<Img src={company.logo} alt={company.name} />
 					</Top>
 					<Bottom>
 						<Col>
@@ -38,9 +43,6 @@ const TicketItem = (props: Ticket) => {
 						</Col>
 					</Bottom>
 				</Content>
-				<DetailsButton type='button'>
-					<CgDetailsMore />
-				</DetailsButton>
 			</TicketWrapper>
 		</>
 	)
@@ -49,7 +51,6 @@ const TicketItem = (props: Ticket) => {
 export default TicketItem
 
 const TicketWrapper = styled.div`
-	max-width: 727px;
 	width: 100%;
 	height: 174px;
 	background: #e8ebf2;
@@ -67,6 +68,7 @@ const Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	margin: 0 20px;
 `
 
 const Top = styled.div`
@@ -109,27 +111,3 @@ const Info = styled.div`
 	font-weight: 500;
 `
 
-const DetailsButton = styled.button`
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 30px;
-	height: 30px;
-	background: #cacdd3;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	font-size: 20px;
-	border-radius: 4px;
-
-	&:hover {
-		background: #aeb1b6;
-	}
-
-	&:active {
-		background: #979a9e;
-	}
-`

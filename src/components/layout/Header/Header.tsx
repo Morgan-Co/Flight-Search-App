@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { device } from '../../../data/media.data'
 import logo from '/logo.svg'
 
 const Header = () => {
@@ -17,6 +18,11 @@ const Wrapper = styled.div`
 	align-items: center;
 	width: 100%;
 	margin-bottom: 20.55px;
+	justify-content: center;
+
+	@media ${device.laptop} {
+		justify-content: start;
+	}
 `
 
 const Title = styled.h1`
@@ -26,8 +32,16 @@ const Title = styled.h1`
 	font-weight: 700;
 	line-height: normal;
 	margin-left: 34px;
+	display: none;
+
+	@media ${device.laptop} {
+		display: block;
+	}
 `
+
 const Img = styled.img`
-	/* width: 100px;
-	height: 80.447px; */
+	@media ${device.mobileL} {
+		width: 57px;
+		height: 46px;
+	}
 `

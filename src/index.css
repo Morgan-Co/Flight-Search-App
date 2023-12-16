@@ -1,11 +1,127 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
 
+body {
+	margin: 0;
+	padding: 0;
+}
+
 * {
 	font-family: Inter, Arial, Helvetica, sans-serif;
-	/* border: 1px solid #000; */
+	/* outline: 1px solid #000; */
 }
 
 #root {
 	display: flex;
 	justify-content: center;
+}
+
+.ca-container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.ca-container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.ca-container .checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 21px;
+	width: 21px;
+	background-color: transparent;
+	border-radius: 4px;
+	border: 1px solid #4e148c;
+	transition: all 0.3s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ca-container .checkmark:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+.ca-container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.ca-container .checkmark:after {
+	background: url('/public/check.svg') no-repeat;
+	width: 15px;
+	height: 15px;
+}
+
+.com-container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.com-container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.com-container .checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 21px;
+	width: 21px;
+	background-color: #eee;
+	border-radius: 50%;
+	border: 1px solid #4e148c;
+	transition: all 0.3s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.com-container .checkmark:after {
+	content: '';
+	position: absolute;
+	transform: scale(0);
+	transition: all 0.1s ease;
+}
+.com-container input:checked ~ .checkmark:after {
+	transform: scale(1);
+}
+
+.com-container .checkmark:after {
+	background: #4e148c;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+}
+
+@media (max-width: 626px) {
+	.checkmark {
+		width: 15px !important; 
+		height: 15px !important;
+	}
 }

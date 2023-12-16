@@ -16,4 +16,5 @@ export default Layout
 const Wrapper = styled.div`
 	max-width: 1048px;
 	width: 100%;
+	padding: 20px;
 `

@@ -1,50 +1,18 @@
 import styled from 'styled-components'
-import { fetchByConnectionAmount } from '../../../../redux/tickets/tickets.actions'
-import { useAppDispatch } from '../../../../hooks/hooks'
+import { TicketsFilters } from '../../../../types'
+import CAFilterItem from './CAFilterItem'
+import { useAppSelector } from '../../../../hooks'
 
-const CAFilter = () => {
-	const dispatch = useAppDispatch()
+const CAFilter = ({ isMedia }: { isMedia: boolean }) => {
+	const filters: TicketsFilters = useAppSelector(state => state.filters)
+
 	return (
-		<Wrapper>
-			<Title>Количество пересадок</Title>
-			<Form action=''>
-				<FormItem>
-					<input
-						type='checkbox'
-						name='all'
-						id='all'
-						defaultChecked
-						onClick={() => dispatch(fetchByConnectionAmount(0))}
-					/>
-					<label htmlFor='all'>Без пересадок</label>
-				</FormItem>
-				<FormItem>
-					<input
-						type='checkbox'
-						name='1'
-						id='1'
-						onClick={() => dispatch(fetchByConnectionAmount(1))}
-					/>
-					<label htmlFor='1'>1 пересадка</label>
-				</FormItem>
-				<FormItem>
-					<input
-						type='checkbox'
-						name='2'
-						id='2'
-						onClick={() => dispatch(fetchByConnectionAmount(2))}
-					/>
-					<label htmlFor='2'>2 пересадки</label>
-				</FormItem>
-				<FormItem>
-					<input
-						type='checkbox'
-						name='3'
-						id='3'
-						onClick={() => dispatch(fetchByConnectionAmount(3))}
-					/>
-					<label htmlFor='3'>3 пересадки</label>
-				</FormItem>
+		<Wrapper $isMedia={isMedia}>
+			<Title $isMedia={isMedia}>Количество пересадок</Title>
+			<Form $isMedia={isMedia} action=''>
+				{filters.connectionAmount.map(item => (
+					<CAFilterItem key={item.id} item={item} />
+				))}
 			</Form>
 		</Wrapper>
 	)
@@ -52,74 +20,44 @@ const CAFilter = () => {
 
 export default CAFilter
 
-const Wrapper = styled.div`
-	width: 272px;
-	height: 258px;
-	border-radius: 10px;
-	background: #e8ebf2;
+const Wrapper = styled.div<{ $isMedia: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	${props =>
+		props.$isMedia
+			? `
+	margin-bottom: 0;
+	background: transparent;
+	height: fit-content;
+	border-radius: 0;
+	`
+			: `
 	margin-bottom: 47px;
+	background: #e8ebf2;
+	height: 258px;
+	border-radius: 10px;
+	`}
 `
 
-const Form = styled.form`
+const Form = styled.form<{ $isMedia: boolean }>`
 	display: flex;
 	flex-direction: column;
-	gap: 21px;
+	gap: 13px;
+	width: ${props=> props.$isMedia && '100%'};
+	label {
+		color: ${props => props.$isMedia && '#fff'};
+	}
+	span {
+		border-color: ${props => props.$isMedia && '#fff !important'};
+	}
 `
 
-const Title = styled.h3`
-	color: #4e148c;
+const Title = styled.h3<{ $isMedia: boolean }>`
+	color: ${props => (props.$isMedia ? '#fff' : '#4e148c')};
 	font-family: Inter;
 	font-size: 20px;
 	font-weight: 700;
-`
-
-const FormItem = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 0 19px;
-
-	input {
-		width: 21px;
-		height: 21px;
-		border-radius: 4px;
-		cursor: pointer;
-	}
-
-	label {
-		color: #858ae3;
-		font-family: Inter;
-		font-size: 16px;
-		font-style: normal;
-		font-weight: 500;
-		line-height: normal;
-	}
-
-	/* input[type='checkbox'] {
-		-webkit-appearance: none;
-		appearance: none;
-		width: 1.6em;
-		height: 1.6em;
-		border-radius: 0.15em;
-		margin-right: 0.5em;
-		border: 0.15em solid #007a7e;
-		outline: none;
-		cursor: pointer;
-
-		input.checked {
-			background-color: #007a7e;
-			position: relative;
-		}
-
-		input.checked::before {
-			content: '2714';
-			font-size: 1.5em;
-			color: #fff;
-			position: absolute;
-			right: 1px;
-			top: -5px;
-		}
-	} */
+	text-align: center;
+	margin: ${props => props.$isMedia && '0 0 12px 0'};
 `
